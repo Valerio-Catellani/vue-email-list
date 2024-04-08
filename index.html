@@ -21,8 +21,8 @@
   <title>Document</title>
 </head>
 
-<body>
-  <div id="app" class="bg-dark vh-100 py-5">
+<body class="bg-dark">
+  <div id="app" class=" py-5">
 
     <div class="container py-5 d-flex flex-column p-4 bg-light border border-5 border-warning-subtle rounded-3 h-100">
       <h2 class="text-center mb-3 display-4 fw-bold text-secondary" style="-webkit-text-stroke: 1px black;">Lista
@@ -42,12 +42,48 @@
         class="first-array w-25 p-1 bg-warning-subtle bg-opacity-75 border border-dark border-2 rounded-2 mb-4 overflow-y-auto shadow"
         v-model="numbersEmail">
       <div class="buttons d-flex gap-5 justify-content-center">
-        <button id="generate-sudent-list" type="button"
-          class="btn btn-lg btn-success align-self-center border border-dark shadow" @click="generateEmail"
-          :disabled="!numbersEmail">
+        <button type="button" class="btn btn-lg btn-success align-self-center border border-dark shadow"
+          @click="generateEmail" :disabled="!numbersEmail">
           {{buttonInfo}}
         </button>
       </div>
+    </div>
+  </div>
+
+  <div id="app2">
+    <div class="container py-5 d-flex flex-column p-4 bg-light border border-5 border-warning-subtle rounded-3 h-100">
+      <h2 class="text-center mb-3 display-4 fw-bold text-primary" style="-webkit-text-stroke: 1px black;">Magic
+        Cards
+      </h2>
+      <button type="button" class="btn btn-lg btn-success align-self-center border border-dark shadow"
+        @click="generateCards">
+        Ottieni 100 carte!
+      </button>
+      <h3 v-if="cards.length > 0">Elenco delle Carte</h3>
+      <div class="d-flex flex-row flex-wrap justify-content-between">
+        <div v-for="card in cards" :key="card.id"
+          class="card d-flex flex-nowrap flex-row border border-black border-5 rounded-4 my-2 overflow-hidden shadow"
+          style="width: 38rem;">
+          <img :src="card.imageUrl" class="card-img-top w-50" :alt="card.name">
+          <div style="width: 45%;">
+            <div class="card-body">
+              <h3 class="text-center">{{card.name}}</h3>
+              <h6 class="card-type">{{card.type}}</h6>
+              <p class="card-text">{{card.text}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li v-if="card.power" class="list-group-item">Power: {{card.power}}</li>
+              <li v-if="card.toughness" class="list-group-item">Health: {{card.toughness}}</li>
+              <li class="list-group-item">Rarity: {{card.rarity}}</li>
+            </ul>
+            <div class="card-body">
+              <span>Artist: </span><a href="#" class="card-link">{{card.artist}}</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 

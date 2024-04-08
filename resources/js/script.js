@@ -46,3 +46,31 @@ createApp({
         // this.generateEmail();
     },
 }).mount('#app');
+
+
+createApp({
+    data() {
+        return {
+            cards: [],
+        }
+    },
+    methods: {
+        generateCards() {
+
+            axios.get('https://api.magicthegathering.io/v1/cards').then((res) => {
+                console.log(res.data.cards);
+
+                this.cards = res.data.cards.filter(element => {
+                    return res.data.cards.indexOf(element) % 2 === 0
+                });
+            })
+        }
+    },
+    computed: {
+
+    },
+    mounted() {
+    },
+    created() {
+    },
+}).mount('#app2');
